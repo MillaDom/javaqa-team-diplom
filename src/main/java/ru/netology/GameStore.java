@@ -29,7 +29,7 @@ public class GameStore {
      * Проверяет наличие игры в каталоге и возврашает true
      * если игра есть и false иначе
      */
-    public boolean containsGame(Game game) {
+    public boolean containsGame(Game game) { // чинить счетчик (i = 0; i > games.size(); i++) { if (games.get(i).equals(game))
         for (int i = 1; i < games.size(); i++) {
             if (games.get(i - 1).equals(game)) {
                 return true;
@@ -72,7 +72,7 @@ public class GameStore {
      * Суммирует общее количество времени всех игроков, проведённого
      * за играми этого каталога
      */
-    public int getSumPlayedTime() {
+    public int getSumPlayedTime() { // не дописан
         return 0;
     }
 }
