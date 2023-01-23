@@ -2,6 +2,7 @@ package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ public class GameStoreTest {
         GameStore store = new GameStore();
 
     //тесты на метод containsGame
+
     @Test
     public void shouldAddGame() { // должен хранить игры в каталоге, даже одну
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
@@ -64,12 +66,12 @@ public class GameStoreTest {
         assertEquals("Petya", store.getMostPlayer());
     }
 
-//    @Test
-//    public void shouldGetMostOnePlayerOneHour() {
-//
-//        store.addPlayTime("Olga", 1);
-//        assertEquals("Olga", store.getMostPlayer());
-//    }
+    @Test
+    public void shouldGetMostOnePlayerOneHour() {
+
+        store.addPlayTime("Olga", 1);
+        assertEquals("Olga", store.getMostPlayer());
+    }
 
     // тесты на метод getSumPlayedTime
     @Test
