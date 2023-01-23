@@ -11,6 +11,10 @@ public class Player {
     значение - суммарное количество часов игры в эту игру */
     private Map<Game, Integer> playedTime = new HashMap<>();
 
+    public Map<Game, Integer> getPlayedTime() {
+        return playedTime;
+    }
+
     public Player(String name) {
         this.name = name;
     }
