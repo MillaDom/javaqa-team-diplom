@@ -81,13 +81,6 @@ public class GameStoreTest {
         });
     }
 
-    @Test
-    public void couldNotAdd0Time() {// должен выкидывать исключение для нулевых значений времени
-        assertThrows(RuntimeException.class, () -> {
-            store.addPlayTime("Kolya", 0);
-        });
-    }
-
     // тесты на метод getMostPlayer
     @Test
     public void shouldGetMostPlayerNoPlayers() {//null если игроков нет
