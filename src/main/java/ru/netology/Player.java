@@ -26,7 +26,9 @@ public class Player {
     /** добавление игры игроку
     если игра уже была, никаких изменений происходить не должно */
     public void installGame(Game game) {
-        playedTime.put(game, 0);
+        if (!playedTime.containsKey(game)) {
+            playedTime.put(game, 0);
+        }
     }
 
     /** игрок играет в игру game на протяжении hours часов
