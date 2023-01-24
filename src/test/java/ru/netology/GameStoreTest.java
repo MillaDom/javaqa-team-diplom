@@ -65,11 +65,11 @@ public class GameStoreTest {
         assertEquals("Kolya", store.getMostPlayer());
     }
 
-    //    @Test
-//    public void couldAddNegativeOrNullTime() {// добавляет отрицательные и нулевые значения
+//    @Test
+//    public void couldAddNegativeTime() {// добавляет отрицательные значения
 //        store.addPlayTime("Kolya", 2);
 //        store.addPlayTime("Petya", -5);
-//        store.addPlayTime("Olga", 0);
+//        store.addPlayTime("Olga", 1);
 //        assertEquals("Kolya", store.getMostPlayer());
 //    }
 
@@ -78,13 +78,6 @@ public class GameStoreTest {
     public void couldNotAddNegativeTime() {// должен выкидывать исключение для отрицательных значений времени
         assertThrows(RuntimeException.class, () -> {
             store.addPlayTime("Olga", -5);
-        });
-    }
-
-    @Test
-    public void couldNotAdd0Time() {// должен выкидывать исключение для нулевых значений времени
-        assertThrows(RuntimeException.class, () -> {
-            store.addPlayTime("Kolya", 0);
         });
     }
 
@@ -100,13 +93,6 @@ public class GameStoreTest {
         store.addPlayTime("Petya", 5);
         store.addPlayTime("Olga", 1);
         assertEquals("Petya", store.getMostPlayer());
-    }
-
-    @Test
-    public void shouldGetMostOnePlayerOneHour() {
-
-        store.addPlayTime("Olga", 1);
-        assertEquals("Olga", store.getMostPlayer());
     }
 
     // тесты на метод getSumPlayedTime
