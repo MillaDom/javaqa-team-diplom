@@ -11,6 +11,10 @@ public class Player {
     значение - суммарное количество часов игры в эту игру */
     private Map<Game, Integer> playedTime = new HashMap<>();
 
+    public Map<Game, Integer> getPlayedTime() {
+        return playedTime;
+    }
+
     public Player(String name) {
         this.name = name;
     }
@@ -22,7 +26,9 @@ public class Player {
     /** добавление игры игроку
     если игра уже была, никаких изменений происходить не должно */
     public void installGame(Game game) {
-        playedTime.put(game, 0);
+        if (!playedTime.containsKey(game)) {
+            playedTime.put(game, 0);
+        }
     }
 
     /** игрок играет в игру game на протяжении hours часов
@@ -33,10 +39,11 @@ public class Player {
     public int play(Game game, int hours) {
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
-            playedTime.put(game, playedTime.get(game));
+            playedTime.put(game, playedTime.get(game) + hours);
         } else {
-            playedTime.put(game, hours);
+            throw new RuntimeException("У игрока " + this.name + " игра " + game + " не установлена!");
         }
+        game.getStore().addPlayTime(name, hours);
         return playedTime.get(game);
     }
 
@@ -47,8 +54,7 @@ public class Player {
         for (Game game : playedTime.keySet()) {
             if (game.getGenre().equals(genre)) {
                 sum += playedTime.get(game);
-            } else {
-                sum = 0;
+
             }
         }
         return sum;
@@ -57,6 +63,17 @@ public class Player {
     /** Метод принимает жанр и возвращает игру этого жанра, в которую играли больше всего
      Если в игры этого жанра не играли, возвращается null */
     public Game mostPlayerByGenre(String genre) {
+        int maxTime = 0;
+        for (Game game : playedTime.keySet()) {
+            if (game.getGenre().equals(genre) && playedTime.get(game) > maxTime) {
+                maxTime = playedTime.get(game);
+            }
+        }
+        for (Game game : playedTime.keySet()) {
+            if (maxTime == playedTime.get(game)) {
+                return game;
+            }
+        }
         return null;
     }
 }
